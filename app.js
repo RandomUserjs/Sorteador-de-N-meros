@@ -1,6 +1,7 @@
+// Variáveis Globais
 let numerosSorteados = [];
 
-//sorteia os números escolhidos pelo usuário
+// Função que sorteia os números escolhidos pelo usuário
 function sortear() {
     numerosSorteados = []
     let quantidade = document.getElementById("quantidade").value;
