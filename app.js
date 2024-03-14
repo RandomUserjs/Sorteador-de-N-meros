@@ -63,6 +63,13 @@ function sortear() {
 }
 
 function reiniciar() {
+    numerosSorteados = [];
+    quantidade = null;
+    de = null;
+    ate = null;
+    document.getElementById("quantidade").value = " ";
+    document.getElementById("de").value = " ";
+    document.getElementById("ate").value = " ";
     let texto = document.getElementsByClassName("texto__paragrafo")[3];
     texto.innerHTML = "Números sorteados:  nenhum até agora";
     let botaoReiniciar = document.getElementById("btn-reiniciar")
