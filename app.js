@@ -19,9 +19,9 @@ function sortear() {
         quantidade = 0;
         de = 0;
         ate = 0;
-        document.getElementById("quantidade").value = " ";
-        document.getElementById("de").value = " ";
-        document.getElementById("ate").value = " ";
+        document.getElementById("quantidade").value = "";
+        document.getElementById("de").value = "";
+        document.getElementById("ate").value = "";
         return;
     }
 
@@ -46,15 +46,47 @@ function sortear() {
         return;
     }
     for (let i = 1; i <= quantidade; i++) {
-        let randomNumber = parseInt(Math.random() * ate + de);
-        if (randomNumber >= de && randomNumber <= ate) {
-            numerosSorteados.push(randomNumber);
+        let randomNumber = parseInt(Math.random() * (ate - de + 1)) + de;
+
+        while(numerosSorteados.includes(randomNumber)){
+          randomNumber = parseInt(Math.random() * (ate - de + 1)) + de;
         }
-        else {
-            i--;
+        numerosSorteados.push(randomNumber);
+        if (numerosSorteados.length === ate) {
+            let primeiroNumero = numerosSorteados[0];
+            numerosSorteados.push(primeiroNumero);
+            break;
         }
 
+        // console.log(randomNumber);
+        // if (randomNumber >= de && randomNumber <= ate) {
+        //     if (numerosSorteados.includes(randomNumber)) {
+        //         i--;
+        //         numerosSorteados.forEach(num => {
+        //             if (num === randomNumber) {
+        //                 numerosSorteados.splice(numerosSorteados.indexOf(randomNumber), 1);
+        //                 numerosSorteados.push(randomNumber);
+        //                 return;
+        //             }
+        //         })
+        //         continue;
+        //     }
+
+        //     numerosSorteados.push(randomNumber);
+        //     numerosSorteados.sort((a, b) => a - b);
+
+        //     if (numerosSorteados.length === ate) {
+        //         break;
+        //     }
+
+
+        // }
+        // else {
+        //     i--;
+        // }
+
     }
+
     let texto = document.getElementsByClassName("texto__paragrafo")[3];
     texto.innerHTML = `Números sorteados: ${numerosSorteados}`;
     console.log(numerosSorteados);
@@ -67,9 +99,9 @@ function reiniciar() {
     quantidade = null;
     de = null;
     ate = null;
-    document.getElementById("quantidade").value = " ";
-    document.getElementById("de").value = " ";
-    document.getElementById("ate").value = " ";
+    document.getElementById("quantidade").value = "";
+    document.getElementById("de").value = "";
+    document.getElementById("ate").value = "";
     let texto = document.getElementsByClassName("texto__paragrafo")[3];
     texto.innerHTML = "Números sorteados:  nenhum até agora";
     let botaoReiniciar = document.getElementById("btn-reiniciar")
